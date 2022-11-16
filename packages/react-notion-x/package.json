@@ -1,6 +1,6 @@
 {
   "name": "@nextunicorn/react-notion-x",
-  "version": "6.15.7-nu",
+  "version": "6.15.7-nu-1",
   "type": "module",
   "description": "Forked from https://github.com/NotionX/react-notion-x",
   "repository": "https://github.com/nextunicorn-inc/react-notion-x",
@@ -18,14 +18,14 @@
     "node": ">=12"
   },
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && tsc --emitDeclarationOnly --declaration",
     "watch": "tsup --watch --silent --onSuccess 'echo build successful'"
   },
   "dependencies": {
     "@fisch0920/medium-zoom": "^1.0.7",
     "@matejmazur/react-katex": "^3.1.3",
     "katex": "^0.15.3",
-    "notion-types": "^6.15.4",
+    "notion-types": "^6.15.6",
     "notion-utils": "^6.15.6",
     "prismjs": "^1.27.0",
     "react-fast-compare": "^3.2.0",
