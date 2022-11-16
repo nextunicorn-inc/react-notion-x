@@ -1,9 +1,9 @@
 {
-  "name": "notion",
+  "name": "@nextunicorn/notion",
+  "description": "Forked from https://github.com/NotionX/react-notion-x",
   "private": true,
-  "description": "Fast and accurate React renderer for Notion. TS batteries included.",
-  "repository": "NotionX/react-notion-x",
-  "author": "Travis Fischer <travis@transitivebullsh.it>",
+  "repository": "https://github.com/nextunicorn-inc/react-notion-x",
+  "author": "nextunicorn <dl_dev@nextunicorn.kr>",
   "license": "MIT",
   "engines": {
     "node": ">=12"
@@ -44,7 +44,7 @@
     "@typescript-eslint/parser": "^5.40.0",
     "ava": "^4.1.0",
     "del-cli": "^4.0.1",
-    "eslint": "^8.25.0",
+    "eslint": "8.22.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",

@@ -1142,7 +1142,12 @@ svg.notion-page-icon {
   min-width: 100%;
 }
 
+.notion-collection-header-wrapper {
+  width: 100%;
+}
+
 .notion-collection-header {
+  width: 100%;
   display: flex;
   align-items: center;
   height: 42px;
@@ -1152,14 +1157,24 @@ svg.notion-page-icon {
 }
 
 .notion-collection-header-title {
-  display: inline-flex;
+}
+
+.notion-collection-header-search {
+  margin-left: auto;
+  display: flex;
   align-items: center;
-  font-size: 1.25em;
-  line-height: 1.2;
-  font-weight: 600;
-  white-space: pre-wrap;
-  word-break: break-word;
-  margin-right: 0.5em;
+  flex-flow: row;
+}
+
+.notion-collection-header-search .searchInput {
+  resize: none;
+  white-space: nowrap;
+  border: none;
+  outline: none;
+  flex: 1;
+
+  line-height: inherit;
+  font-size: inherit;
 }
 
 .notion-collection-view-dropdown {

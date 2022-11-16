@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import * as types from 'notion-types'
 import {
@@ -15,6 +16,7 @@ import {
   useNotionContext
 } from '../context'
 import { CollectionViewIcon } from '../icons/collection-view-icon'
+import { SearchIcon } from '../icons/search-icon'
 import { cs } from '../utils'
 import { CollectionRow } from './collection-row'
 import { CollectionView } from './collection-view'
@@ -163,6 +165,16 @@ const CollectionViewBlock: React.FC<{
   //   padding
   // })
 
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false)
+  const [query, setQuery] = useState<string>('')
+  useEffect(() => {
+    setIsSearchOpen(!!isSearchOpen)
+  }, [isSearchOpen])
+
+  const onOpenSearch = useCallback(() => {
+    setIsSearchOpen(true)
+  }, [])
+
   if (!(collection && collectionView && collectionData)) {
     console.warn('skipping missing collection view for block', block.id, {
       collectionId,
@@ -184,7 +196,7 @@ const CollectionViewBlock: React.FC<{
 
   return (
     <>
-      <div>
+      <div className='notion-collection-header-wrapper'>
         <div>
           {viewIds.length > 1 && showCollectionViewDropdown && (
             <CollectionViewTabs
@@ -197,19 +209,41 @@ const CollectionViewBlock: React.FC<{
         <div className='notion-collection-header'>
           {/*TODO: only show if no full DB*/}
           {title && (
-            <div className='notion-collection-header-title'>
-              <PageIcon
-                block={block}
-                className='notion-page-title-icon'
-                hideDefaultIcon
-              />
-              {title}
-            </div>
+            <>
+              <div className='notion-collection-header-title'>
+                <PageIcon
+                  block={block}
+                  className='notion-page-title-icon'
+                  hideDefaultIcon
+                />
+                {title}
+              </div>
+              <div className='notion-collection-header-search'>
+                <div
+                  role='button'
+                  className={cs('breadcrumb', 'button', 'notion-search-button')}
+                  onClick={onOpenSearch}
+                >
+                  <SearchIcon className='searchIcon' />
+                </div>
+                {isSearchOpen && (
+                  <input
+                    className='searchInput'
+                    placeholder='Search'
+                    value={query}
+                    onChange={(e) => {
+                      setQuery(e.target.value)
+                    }}
+                  />
+                )}
+              </div>
+            </>
           )}
         </div>
       </div>
       <div className={cs('notion-collection', className)}>
         <CollectionView
+          query={query}
           collection={collection}
           collectionView={collectionView}
           collectionData={collectionData}

@@ -16,7 +16,7 @@
     "@notionhq/client": "^1.0.4",
     "classnames": "^2.3.1",
     "got": "^12.0.2",
-    "lqip-modern": "^1.2.0",
+    "lqip-modern": "^2.0.0",
     "next": "^12.1.0",
     "notion-client": "^6.15.6",
     "notion-compat": "^6.15.6",
@@ -25,7 +25,7 @@
     "p-memoize": "^6.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-notion-x": "^6.15.6",
+    "@nextunicorn/react-notion-x": "^6.15.7-nu",
     "react-tweet-embed": "^2.0.0"
   },
   "devDependencies": {

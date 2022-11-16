@@ -68,6 +68,7 @@ export interface CollectionViewProps {
   collectionData: types.CollectionQueryResult
   padding?: number
   width?: number
+  query?: string
 }
 
 export interface CollectionCardProps {
@@ -91,4 +92,5 @@ export interface CollectionGroupProps {
   value: any
   summaryProps: any
   detailsProps: any
+  query?: string
 }

@@ -14,7 +14,8 @@ const defaultBlockIds = []
 export const CollectionViewGallery: React.FC<CollectionViewProps> = ({
   collection,
   collectionView,
-  collectionData
+  collectionData,
+  query
 }) => {
   const isGroupedCollection = collectionView?.format?.collection_group_by
 
@@ -27,6 +28,7 @@ export const CollectionViewGallery: React.FC<CollectionViewProps> = ({
 
     return collectionGroups.map((group, index) => (
       <CollectionGroup
+        query={query}
         key={index}
         {...group}
         collectionViewComponent={Gallery}
@@ -42,6 +44,7 @@ export const CollectionViewGallery: React.FC<CollectionViewProps> = ({
 
   return (
     <Gallery
+      query={query}
       collectionView={collectionView}
       collection={collection}
       blockIds={blockIds}
@@ -49,7 +52,7 @@ export const CollectionViewGallery: React.FC<CollectionViewProps> = ({
   )
 }
 
-function Gallery({ blockIds, collectionView, collection }) {
+function Gallery({ blockIds, collectionView, collection, query }) {
   const { recordMap } = useNotionContext()
   const {
     gallery_cover = { type: 'none' },
@@ -69,6 +72,19 @@ function Gallery({ blockIds, collectionView, collection }) {
           {blockIds?.map((blockId) => {
             const block = recordMap.block[blockId]?.value as PageBlock
             if (!block) return null
+            if (query) {
+              if (
+                collectionView.format?.gallery_properties
+                  ?.filter((p) => {
+                    return p.visible && collection.schema[p.property]
+                  })
+                  .filter((p) => {
+                    const data = block.properties[p.property]?.[0]?.[0]
+                    return data?.indexOf(query) >= 0
+                  })?.length === 0
+              )
+                return null
+            }
 
             return (
               <CollectionCard
